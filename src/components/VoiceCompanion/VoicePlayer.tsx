@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Volume2, VolumeX, Sparkles, RefreshCw } from 'lucide-react';
+import { Volume2, VolumeX, RefreshCw } from 'lucide-react';
 import { speakText, stopSpeech } from '../../lib/elevenLabsService';
 
 interface VoicePlayerProps {
@@ -34,20 +34,20 @@ export const VoicePlayer: React.FC<VoicePlayerProps> = ({ voiceSummaryBn, eleven
   };
 
   return (
-    <div className="p-4 rounded-2xl bg-gradient-to-r from-[#131924] via-[#0E1420] to-[#131924] border border-cyan-500/30 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div className="p-4 rounded-2xl bg-[#131924] dark:bg-[#131924] light:bg-[#EBE3A7] border border-cyan-500/30 light:border-[#D9D092] shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
       
-      <div className="flex items-center space-x-3 text-slate-200">
-        <div className="p-3 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 glow-cyan">
-          <Volume2 className={`w-6 h-6 ${isPlaying ? 'animate-bounce text-cyan-300' : ''}`} />
+      <div className="flex items-center space-x-3 text-slate-200 dark:text-slate-200 light:text-[#0F172A]">
+        <div className="p-3 rounded-xl bg-cyan-500/10 dark:bg-cyan-500/10 light:bg-[#DCD396] text-cyan-400 dark:text-cyan-400 light:text-cyan-950 border border-cyan-500/30 light:border-[#C5BC7F] glow-cyan">
+          <Volume2 className={`w-6 h-6 ${isPlaying ? 'animate-bounce text-cyan-300 light:text-cyan-900' : ''}`} />
         </div>
         <div className="space-y-0.5">
           <div className="flex items-center space-x-2">
-            <span className="font-extrabold text-sm text-slate-100">ElevenLabs Natural Voice Guidance</span>
-            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+            <span className="font-extrabold text-sm text-slate-100 dark:text-slate-100 light:text-[#0F172A]">ElevenLabs Natural Voice Guidance</span>
+            <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-cyan-500/20 dark:bg-cyan-500/20 light:bg-cyan-500/30 text-cyan-300 dark:text-cyan-300 light:text-cyan-950 border border-cyan-500/30 light:border-cyan-600/40">
               Voice AI Track
             </span>
           </div>
-          <p className="text-xs text-emerald-400 font-bangla font-medium">
+          <p className="text-xs text-emerald-400 dark:text-emerald-400 light:text-[#047857] font-bangla font-bold">
             "{voiceSummaryBn}"
           </p>
         </div>

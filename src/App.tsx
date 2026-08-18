@@ -110,17 +110,17 @@ export function App() {
         
         {/* Hero Command Hub (Directory Page Mode) */}
         {activeViewMode === 'DIRECTORY' && (
-          <div className="p-6 sm:p-8 rounded-3xl bg-[#131924] dark:bg-[#131924] light:bg-white border border-slate-800/80 light:border-slate-200 shadow-xl space-y-5">
+          <div className="p-6 sm:p-8 rounded-3xl bg-[#131924] dark:bg-[#131924] light:bg-[#EBE3A7] border border-slate-800/80 light:border-[#D9D092] shadow-xl space-y-5">
             
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight">
+                <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight text-slate-100 dark:text-slate-100 light:text-[#0F172A]">
                   Understand the Problem.{' '}
-                  <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 light:from-emerald-700 light:to-cyan-800 bg-clip-text text-transparent">
                     Navigate the Solution.
                   </span>
                 </h1>
-                <p className="text-xs sm:text-sm text-slate-400 mt-1">
+                <p className="text-xs sm:text-sm text-slate-400 dark:text-slate-400 light:text-[#334155] font-semibold mt-1">
                   AI-powered public service action plans, police GD drafts, and threat defense for Bangladesh.
                 </p>
               </div>
@@ -142,22 +142,22 @@ export function App() {
                 className="flex items-center space-x-2"
               >
                 <div className="relative flex-1">
-                  <Search className="w-4 h-4 text-slate-400 absolute left-4 top-3.5" />
+                  <Search className="w-4 h-4 text-slate-400 light:text-slate-600 absolute left-4 top-3.5" />
                   <input
                     type="text"
                     placeholder="Ask Shomadhan AI e.g., 'I lost my Smart NID card', 'Passport renewal', 'Bank fraud'..."
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
-                    className="w-full pl-11 pr-4 py-3 rounded-2xl bg-[#090D14] light:bg-slate-100 border border-slate-800 light:border-slate-300 text-slate-100 light:text-slate-900 focus:outline-none focus:border-emerald-500 text-xs sm:text-sm"
+                    className="w-full pl-11 pr-4 py-3 rounded-2xl bg-[#090D14] light:bg-[#FFF8D6] border border-slate-800 light:border-[#C5BC7F] text-slate-100 light:text-[#0F172A] light:placeholder-[#475569] focus:outline-none focus:border-emerald-500 font-semibold text-xs sm:text-sm shadow-inner"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={isLoading || !userInput}
-                  className={`px-5 py-3 rounded-2xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition-all ${
+                  className={`px-5 py-3 rounded-2xl font-extrabold text-xs sm:text-sm flex items-center space-x-2 transition-all ${
                     isLoading || !userInput
-                      ? 'bg-slate-800 text-slate-500 cursor-not-allowed'
+                      ? 'bg-slate-800 light:bg-slate-300 text-slate-500 light:text-slate-600 cursor-not-allowed'
                       : 'bg-emerald-500 hover:bg-emerald-600 text-white shadow-md'
                   }`}
                 >
@@ -175,28 +175,28 @@ export function App() {
 
             {/* Quick Demo Scenario Chips */}
             <div className="flex flex-wrap items-center gap-2 pt-1 text-xs">
-              <span className="font-semibold text-slate-400 flex items-center space-x-1 mr-1">
-                <Zap className="w-3.5 h-3.5 text-amber-400" />
+              <span className="font-extrabold text-slate-400 dark:text-slate-400 light:text-[#0F172A] flex items-center space-x-1 mr-1">
+                <Zap className="w-3.5 h-3.5 text-amber-400 light:text-amber-700" />
                 <span>Quick Scenarios:</span>
               </span>
 
               <button
                 onClick={() => handleLoadPreset('lost_nid')}
-                className="px-3 py-1 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/20 font-medium transition-colors"
+                className="px-3 py-1 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/10 light:bg-[#DCD396] text-emerald-300 dark:text-emerald-300 light:text-[#047857] border border-emerald-500/20 light:border-[#C5BC7F] font-bold transition-colors shadow-sm"
               >
                 📌 Lost NID & Police GD
               </button>
 
               <button
                 onClick={() => handleLoadPreset('bkash_phishing')}
-                className="px-3 py-1 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/20 font-medium transition-colors"
+                className="px-3 py-1 rounded-xl bg-rose-500/10 dark:bg-rose-500/10 light:bg-[#DCD396] text-rose-300 dark:text-rose-300 light:text-[#B91C1C] border border-rose-500/20 light:border-[#C5BC7F] font-bold transition-colors shadow-sm"
               >
                 🚨 bKash Phishing SMS Scanner
               </button>
 
               <button
                 onClick={() => handleLoadPreset('bank_dispute')}
-                className="px-3 py-1 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/20 font-medium transition-colors"
+                className="px-3 py-1 rounded-xl bg-cyan-500/10 dark:bg-cyan-500/10 light:bg-[#DCD396] text-cyan-300 dark:text-cyan-300 light:text-[#0369A1] border border-cyan-500/20 light:border-[#C5BC7F] font-bold transition-colors shadow-sm"
               >
                 💳 Bank Fraud Dispute Claim
               </button>
