@@ -91,7 +91,7 @@ export function App() {
   };
 
   return (
-    <div className={`min-h-screen font-sans ${theme === 'dark' ? 'bg-[#090D14] text-slate-100' : 'bg-[#F8FAFC] text-slate-900'} transition-colors duration-300`}>
+    <div className={`min-h-screen font-sans ${theme === 'dark' ? 'bg-[#090D14] text-slate-100' : 'bg-[#FFF4BF] text-slate-900'} transition-colors duration-300`}>
       
       {/* Top Navigation */}
       <Header

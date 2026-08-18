@@ -4,15 +4,15 @@
 
 @layer base {
   :root {
-    --bg-main: #F8FAFC;
+    --bg-main: #FFF4BF;
     --bg-card: #FFFFFF;
-    --border-card: #E2E8F0;
+    --border-card: #E2D99C;
     --text-primary: #0F172A;
-    --text-secondary: #475569;
-    --accent-emerald: #059669;
-    --accent-cyan: #0284C7;
-    --accent-amber: #D97706;
-    --accent-crimson: #DC2626;
+    --text-secondary: #334155;
+    --accent-emerald: #047857;
+    --accent-cyan: #0369A1;
+    --accent-amber: #B45309;
+    --accent-crimson: #B91C1C;
   }
 
   .dark {
