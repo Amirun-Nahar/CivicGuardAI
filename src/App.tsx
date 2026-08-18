@@ -14,14 +14,14 @@ import { RiskTelemetry } from './components/ScamShieldEngine/RiskTelemetry';
 import { IncidentMode } from './components/ScamShieldEngine/IncidentMode';
 import { VoiceBar } from './components/VoiceCompanion/VoiceBar';
 import { VoicePlayer } from './components/VoiceCompanion/VoicePlayer';
-
-import { AppTheme, AppLanguage, AppRoute, CivicGuardResponse } from './types';
 import { processCivicGuardQuery, DEMO_PRESETS } from './lib/geminiService';
+import { CivicGuardResponse, AppLanguage, AppRoute } from './types';
 import { Search, Sparkles, RefreshCw, Zap } from 'lucide-react';
 
-export const App: React.FC = () => {
-  const [theme, setTheme] = useState<AppTheme>('dark');
-  const [language, setLanguage] = useState<AppLanguage>('both');
+export function App() {
+  // Theme & Language State
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const [language, setLanguage] = useState<AppLanguage>('bn');
   const [activeRoute, setActiveRoute] = useState<AppRoute>('SHOMADHAN');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
@@ -32,28 +32,23 @@ export const App: React.FC = () => {
   // Input & Query State
   const [userInput, setUserInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
-  // Active AI Response
   const [activeResponse, setActiveResponse] = useState<CivicGuardResponse>(DEMO_PRESETS['lost_nid']);
-
-  // Modals & Incident Trigger
   const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
   const [isIncidentMode, setIsIncidentMode] = useState(false);
 
-  // Apply dark/light theme to html
-  useEffect(() => {
-    const root = document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-      root.classList.remove('light');
-    } else {
-      root.classList.add('light');
-      root.classList.remove('dark');
-    }
-  }, [theme]);
-
+  // Navigation state for standalone detail page view
   const [activeCategoryKey, setActiveCategoryKey] = useState<string>('lost_nid');
   const [activeViewMode, setActiveViewMode] = useState<'DIRECTORY' | 'DETAIL'>('DIRECTORY');
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    } else {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
 
   const handleQuerySubmit = async (queryText?: string, file?: File | null) => {
     const query = queryText || userInput;
@@ -243,46 +238,49 @@ export const App: React.FC = () => {
         {activeRoute === 'SCAMSHIELD' && (
           <div className="space-y-6">
             <ThreatScanner
-              onScanText={(text, file) => {
-                setUserInput(text);
-                handleQuerySubmit(text, file);
-              }}
+              onScanText={(text, file) => handleQuerySubmit(text, file)}
               isLoading={isLoading}
               onLoadPreset={handleLoadPreset}
             />
 
-            {isIncidentMode && (
-              <IncidentMode
-                onClose={() => setIsIncidentMode(false)}
-                elevenLabsApiKey={elevenLabsKey}
-              />
-            )}
-
             {activeResponse.scamshield_data && (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <>
+                {/* Visual HUD Canvas Bounding Box */}
                 <VisualHudOverlay
+                  imageSrc={null}
                   boundingBoxes={activeResponse.scamshield_data.bounding_boxes}
                   riskLevel={activeResponse.scamshield_data.risk_level}
                 />
 
+                {/* Telemetry Gauge & Indicators */}
                 <RiskTelemetry
                   data={activeResponse.scamshield_data}
                   onTriggerIncidentMode={() => setIsIncidentMode(true)}
                 />
-              </div>
+
+                {/* Emergency Incident Triage Button */}
+                <div className="text-center pt-2">
+                  <button
+                    onClick={() => setIsIncidentMode(true)}
+                    className="px-6 py-3 rounded-2xl bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-xs sm:text-sm shadow-xl glow-crimson transition-all animate-pulse"
+                  >
+                    🚨 I Already Clicked It — Start Emergency Triage
+                  </button>
+                </div>
+
+                {/* Incident Mode Protocol Modal/View */}
+                {isIncidentMode && (
+                  <IncidentMode
+                    onClose={() => setIsIncidentMode(false)}
+                    elevenLabsApiKey={elevenLabsKey}
+                  />
+                )}
+              </>
             )}
           </div>
         )}
 
       </main>
-
-      {/* Police GD & Dispute PDF Modal */}
-      <GdPdfModal
-        isOpen={isPdfModalOpen}
-        onClose={() => setIsPdfModalOpen(false)}
-        templateType={activeResponse.shomadhan_data?.pdf_template_type || 'POLICE_GD_LOST_DOC'}
-        problemTitle={activeResponse.shomadhan_data?.problem_summary_en}
-      />
 
       {/* Settings Modal */}
       <SettingsDrawer
@@ -294,12 +292,18 @@ export const App: React.FC = () => {
         setElevenLabsKey={setElevenLabsKey}
       />
 
-      {/* Footer */}
-      <footer className="w-full border-t border-slate-800/60 light:border-slate-200 py-6 mt-12 text-center text-xs text-slate-500">
-        <p className="font-semibold text-slate-400">CIVIC GUARD AI • Best Use of Gemini API + ElevenLabs Side Track</p>
-        <p>Built for Citizens of Bangladesh • Grounded .gov.bd Verification & Zero-PII Security</p>
-      </footer>
+      {/* 1-Click Police GD & Bank Dispute PDF Generator Modal */}
+      {isPdfModalOpen && activeResponse.shomadhan_data && (
+        <GdPdfModal
+          isOpen={isPdfModalOpen}
+          onClose={() => setIsPdfModalOpen(false)}
+          templateType={activeResponse.shomadhan_data.pdf_template_type || 'POLICE_GD_LOST_DOC'}
+          problemTitle={activeResponse.shomadhan_data.problem_summary_en}
+        />
+      )}
 
     </div>
   );
-};
+}
+
+export default App;
