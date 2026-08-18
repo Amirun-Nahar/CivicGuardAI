@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Mic, MicOff, Volume2, Sparkles, RefreshCw } from 'lucide-react';
+import { Mic, MicOff } from 'lucide-react';
 import { SpeechRecognizer } from '../../lib/elevenLabsService';
 
 interface VoiceBarProps {
@@ -48,22 +48,26 @@ export const VoiceBar: React.FC<VoiceBarProps> = ({ onTranscript }) => {
   };
 
   return (
-    <div className="flex items-center space-x-2 bg-[#131924] dark:bg-[#131924] light:bg-slate-100 p-2 rounded-2xl border border-[#1E2638] light:border-slate-300">
+    <div className="flex items-center space-x-2 bg-[#090D14] dark:bg-[#090D14] light:bg-[#DCD396] p-1.5 rounded-2xl border border-slate-800 light:border-[#C5BC7F] shadow-sm">
       
       {/* STT Language Switcher */}
-      <div className="flex items-center space-x-1 bg-[#090D14] p-1 rounded-xl">
+      <div className="flex items-center space-x-1 bg-[#131924] dark:bg-[#131924] light:bg-[#EBE3A7] p-1 rounded-xl border border-slate-800/80 light:border-[#D9D092]">
         <button
           onClick={() => setSttLang('bn-BD')}
-          className={`px-2 py-0.5 text-[11px] font-bold rounded ${
-            sttLang === 'bn-BD' ? 'bg-emerald-500 text-white' : 'text-slate-400'
+          className={`px-2.5 py-1 text-[11px] font-extrabold rounded-lg transition-all ${
+            sttLang === 'bn-BD'
+              ? 'bg-emerald-500 text-white shadow-sm'
+              : 'text-slate-400 dark:text-slate-400 light:text-[#0F172A] hover:text-white'
           }`}
         >
           বাংলা Voice
         </button>
         <button
           onClick={() => setSttLang('en-US')}
-          className={`px-2 py-0.5 text-[11px] font-bold rounded ${
-            sttLang === 'en-US' ? 'bg-emerald-500 text-white' : 'text-slate-400'
+          className={`px-2.5 py-1 text-[11px] font-extrabold rounded-lg transition-all ${
+            sttLang === 'en-US'
+              ? 'bg-emerald-500 text-white shadow-sm'
+              : 'text-slate-400 dark:text-slate-400 light:text-[#0F172A] hover:text-white'
           }`}
         >
           EN Voice
@@ -73,23 +77,23 @@ export const VoiceBar: React.FC<VoiceBarProps> = ({ onTranscript }) => {
       {/* Mic Record Button */}
       <button
         onClick={toggleRecording}
-        className={`flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md ${
+        className={`flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-extrabold transition-all shadow-md flex-shrink-0 ${
           isRecording
             ? 'bg-rose-600 text-white animate-pulse glow-crimson'
-            : 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-white hover:opacity-90 glow-emerald'
+            : 'bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white hover:opacity-95 glow-emerald hover:scale-105'
         }`}
       >
         {isRecording ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
-        <span>{isRecording ? 'Listening (Speak Now)...' : 'Voice Search'}</span>
+        <span>{isRecording ? 'Listening...' : 'Voice Search'}</span>
       </button>
 
       {/* Live Waveform Indicator */}
       {isRecording && (
-        <div className="flex items-center space-x-1 px-3 py-1 rounded-lg bg-rose-500/10 text-rose-300 text-xs font-mono border border-rose-500/30">
+        <div className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-rose-500/10 text-rose-300 text-xs font-mono border border-rose-500/30">
           <span className="w-1.5 h-4 bg-rose-500 animate-bounce" />
           <span className="w-1.5 h-6 bg-rose-400 animate-bounce delay-75" />
           <span className="w-1.5 h-3 bg-rose-500 animate-bounce delay-150" />
-          <span className="truncate max-w-[150px]">{liveText || 'Transcribing...'}</span>
+          <span className="truncate max-w-[150px] font-bold">{liveText || 'Transcribing...'}</span>
         </div>
       )}
     </div>

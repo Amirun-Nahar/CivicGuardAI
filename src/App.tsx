@@ -110,63 +110,79 @@ export function App() {
         
         {/* Hero Command Hub (Directory Page Mode) */}
         {activeViewMode === 'DIRECTORY' && (
-          <div className="p-6 sm:p-8 rounded-3xl bg-[#EBE3A7] dark:bg-[#131924] border border-[#D9D092] dark:border-slate-800/80 shadow-xl space-y-5">
+          <div className="p-6 sm:p-8 rounded-3xl bg-[#EBE3A7] dark:bg-gradient-to-r dark:from-[#131924] dark:via-[#0E1420] dark:to-[#131924] border border-[#D9D092] dark:border-slate-800 shadow-2xl space-y-6">
             
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div>
-                <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight text-[#0F172A] dark:text-slate-100">
+            {/* Top Sub-Badge & Header Row */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#D9D092] dark:border-slate-800/80 pb-5">
+              <div className="space-y-2">
+                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#DCD396] dark:bg-emerald-500/10 border border-[#C5BC7F] dark:border-emerald-500/20 text-[#047857] dark:text-emerald-400 text-xs font-extrabold shadow-sm">
+                  <Sparkles className="w-3.5 h-3.5 text-emerald-800 dark:text-emerald-400" />
+                  <span>SHOMADHAN AI CORE v2.5 • Grounded Citizen Intelligence</span>
+                </div>
+
+                <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#0F172A] dark:text-slate-100 leading-tight">
                   Understand the Problem.{' '}
-                  <span className="bg-gradient-to-r from-emerald-700 to-cyan-800 dark:from-emerald-400 dark:to-cyan-400 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-emerald-800 via-teal-800 to-cyan-900 dark:from-emerald-400 dark:via-teal-300 dark:to-cyan-400 bg-clip-text text-transparent">
                     Navigate the Solution.
                   </span>
                 </h1>
-                <p className="text-xs sm:text-sm text-[#334155] dark:text-slate-400 font-bold mt-1">
-                  AI-powered public service action plans, police GD drafts, and threat defense for Bangladesh.
+                <p className="text-xs sm:text-sm text-[#334155] dark:text-slate-400 font-extrabold">
+                  AI-powered public service action plans, 1-click police GD drafts, and threat defense for Bangladesh.
                 </p>
               </div>
 
               {/* Voice Recording Widget */}
-              <VoiceBar onTranscript={(transcript) => {
-                setUserInput(transcript);
-                handleQuerySubmit(transcript);
-              }} />
+              <div className="flex-shrink-0">
+                <VoiceBar onTranscript={(transcript) => {
+                  setUserInput(transcript);
+                  handleQuerySubmit(transcript);
+                }} />
+              </div>
             </div>
 
-            {/* Unified Query Search Input */}
+            {/* Unified Command Search Bar */}
             {activeRoute === 'SHOMADHAN' && (
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
                   handleQuerySubmit();
                 }}
-                className="flex items-center space-x-2"
+                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3"
               >
                 <div className="relative flex-1">
-                  <Search className="w-4 h-4 text-slate-600 dark:text-slate-400 absolute left-4 top-3.5" />
+                  <Search className="w-5 h-5 text-slate-700 dark:text-slate-400 absolute left-4 top-4" />
                   <input
                     type="text"
-                    placeholder="Ask Shomadhan AI e.g., 'I lost my Smart NID card', 'Passport renewal', 'Bank fraud'..."
+                    placeholder="Ask Shomadhan AI e.g., 'I lost my Smart NID card', 'e-Passport renewal', 'Bank fraud claim'..."
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
-                    className="w-full pl-11 pr-4 py-3 rounded-2xl bg-[#FFF8D6] dark:bg-[#090D14] border border-[#C5BC7F] dark:border-slate-800 text-[#0F172A] dark:text-slate-100 placeholder-[#475569] dark:placeholder-slate-500 focus:outline-none focus:border-emerald-500 font-semibold text-xs sm:text-sm shadow-inner"
+                    className="w-full pl-12 pr-12 py-3.5 rounded-2xl bg-[#FFF8D6] dark:bg-[#090D14] border border-[#C5BC7F] dark:border-slate-800 text-[#0F172A] dark:text-slate-100 placeholder-[#475569] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 font-extrabold text-xs sm:text-sm shadow-inner transition-all"
                   />
+                  {userInput && (
+                    <span className="hidden sm:inline-block absolute right-4 top-3.5 text-[10px] font-mono text-slate-500 bg-[#DCD396] dark:bg-slate-800 px-2 py-0.5 rounded border border-[#C5BC7F] dark:border-slate-700">
+                      ↵ Enter
+                    </span>
+                  )}
                 </div>
 
                 <button
                   type="submit"
                   disabled={isLoading || !userInput}
-                  className={`px-5 py-3 rounded-2xl font-extrabold text-xs sm:text-sm flex items-center space-x-2 transition-all ${
+                  className={`px-7 py-3.5 rounded-2xl font-extrabold text-xs sm:text-sm flex items-center justify-center space-x-2 transition-all shadow-lg flex-shrink-0 ${
                     isLoading || !userInput
-                      ? 'bg-slate-300 dark:bg-slate-800 text-slate-600 dark:text-slate-500 cursor-not-allowed'
-                      : 'bg-emerald-500 hover:bg-emerald-600 text-white shadow-md'
+                      ? 'bg-slate-300 dark:bg-slate-800 text-slate-600 dark:text-slate-500 cursor-not-allowed border border-slate-400/40 dark:border-slate-700'
+                      : 'bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 dark:from-emerald-500 dark:via-teal-500 dark:to-cyan-500 text-white hover:scale-105 active:scale-95 glow-emerald'
                   }`}
                 >
                   {isLoading ? (
-                    <RefreshCw className="w-4 h-4 animate-spin text-white" />
+                    <>
+                      <RefreshCw className="w-4 h-4 animate-spin text-white" />
+                      <span>Generating Roadmap...</span>
+                    </>
                   ) : (
                     <>
                       <Sparkles className="w-4 h-4" />
-                      <span className="hidden sm:inline">Get Action Plan</span>
+                      <span>Get Action Plan</span>
                     </>
                   )}
                 </button>
@@ -174,29 +190,29 @@ export function App() {
             )}
 
             {/* Quick Demo Scenario Chips */}
-            <div className="flex flex-wrap items-center gap-2 pt-1 text-xs">
-              <span className="font-extrabold text-[#0F172A] dark:text-slate-400 flex items-center space-x-1 mr-1">
-                <Zap className="w-3.5 h-3.5 text-amber-700 dark:text-amber-400" />
+            <div className="flex flex-wrap items-center gap-2.5 pt-1 text-xs border-t border-[#D9D092] dark:border-slate-800/80">
+              <span className="font-extrabold text-[#0F172A] dark:text-slate-300 flex items-center space-x-1.5 mr-1">
+                <Zap className="w-4 h-4 text-amber-700 dark:text-amber-400 fill-amber-700 dark:fill-amber-400" />
                 <span>Quick Scenarios:</span>
               </span>
 
               <button
                 onClick={() => handleLoadPreset('lost_nid')}
-                className="px-3 py-1 rounded-xl bg-[#DCD396] dark:bg-emerald-500/10 text-[#047857] dark:text-emerald-300 border border-[#C5BC7F] dark:border-emerald-500/20 font-extrabold transition-colors shadow-sm"
+                className="px-3.5 py-1.5 rounded-xl bg-[#DCD396] dark:bg-emerald-500/10 text-[#047857] dark:text-emerald-300 border border-[#C5BC7F] dark:border-emerald-500/30 font-extrabold hover:scale-105 transition-all shadow-sm hover:shadow-md"
               >
                 📌 Lost NID & Police GD
               </button>
 
               <button
                 onClick={() => handleLoadPreset('bkash_phishing')}
-                className="px-3 py-1 rounded-xl bg-[#DCD396] dark:bg-rose-500/10 text-[#B91C1C] dark:text-rose-300 border border-[#C5BC7F] dark:border-rose-500/20 font-extrabold transition-colors shadow-sm"
+                className="px-3.5 py-1.5 rounded-xl bg-[#DCD396] dark:bg-rose-500/10 text-[#B91C1C] dark:text-rose-300 border border-[#C5BC7F] dark:border-rose-500/30 font-extrabold hover:scale-105 transition-all shadow-sm hover:shadow-md"
               >
                 🚨 bKash Phishing SMS Scanner
               </button>
 
               <button
                 onClick={() => handleLoadPreset('bank_dispute')}
-                className="px-3 py-1 rounded-xl bg-[#DCD396] dark:bg-cyan-500/10 text-[#0369A1] dark:text-cyan-300 border border-[#C5BC7F] dark:border-cyan-500/20 font-extrabold transition-colors shadow-sm"
+                className="px-3.5 py-1.5 rounded-xl bg-[#DCD396] dark:bg-cyan-500/10 text-[#0369A1] dark:text-cyan-300 border border-[#C5BC7F] dark:border-cyan-500/30 font-extrabold hover:scale-105 transition-all shadow-sm hover:shadow-md"
               >
                 💳 Bank Fraud Dispute Claim
               </button>
