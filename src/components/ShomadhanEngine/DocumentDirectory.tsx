@@ -16,7 +16,7 @@ export const DocumentDirectory: React.FC<DocumentDirectoryProps> = ({
   const documentCategories = [
     {
       key: 'lost_nid',
-      icon: <CreditCard className="w-5 h-5 text-emerald-400 light:text-emerald-700" />,
+      icon: <CreditCard className="w-5 h-5 text-emerald-700 dark:text-emerald-400" />,
       titleEn: 'Smart National ID (NID) Card',
       titleBn: 'স্মার্ট এনআইডি (জাতীয় পরিচয়পত্র)',
       badge: 'Form 102 Police GD',
@@ -28,7 +28,7 @@ export const DocumentDirectory: React.FC<DocumentDirectoryProps> = ({
     },
     {
       key: 'passport_renewal',
-      icon: <FileCheck className="w-5 h-5 text-cyan-400 light:text-cyan-700" />,
+      icon: <FileCheck className="w-5 h-5 text-cyan-700 dark:text-cyan-400" />,
       titleEn: 'e-Passport & Renewal',
       titleBn: 'ই-পাসপোর্ট ও নবায়ন সেবা',
       badge: 'DIP Bangladesh',
@@ -40,7 +40,7 @@ export const DocumentDirectory: React.FC<DocumentDirectoryProps> = ({
     },
     {
       key: 'university_id',
-      icon: <GraduationCap className="w-5 h-5 text-amber-400 light:text-amber-700" />,
+      icon: <GraduationCap className="w-5 h-5 text-amber-700 dark:text-amber-400" />,
       titleEn: 'University & Student ID Card',
       titleBn: 'বিশ্ববিদ্যালয় ও স্টুডেন্ট আইডি',
       badge: 'Academic Clearance',
@@ -52,7 +52,7 @@ export const DocumentDirectory: React.FC<DocumentDirectoryProps> = ({
     },
     {
       key: 'bank_dispute',
-      icon: <ShieldAlert className="w-5 h-5 text-rose-400 light:text-rose-700" />,
+      icon: <ShieldAlert className="w-5 h-5 text-rose-700 dark:text-rose-400" />,
       titleEn: 'Bank ATM / Credit Card & Fraud',
       titleBn: 'ব্যাংক কার্ড ও জালিয়াতি অভিযোগ',
       badge: 'Dispute Letter',
@@ -64,7 +64,7 @@ export const DocumentDirectory: React.FC<DocumentDirectoryProps> = ({
     },
     {
       key: 'driving_license',
-      icon: <Award className="w-5 h-5 text-indigo-400 light:text-indigo-700" />,
+      icon: <Award className="w-5 h-5 text-indigo-700 dark:text-indigo-400" />,
       titleEn: 'BRTA Driving License',
       titleBn: 'বিআরটিএ ড্রাইভিং লাইসেন্স',
       badge: 'BRTA Service',
@@ -76,7 +76,7 @@ export const DocumentDirectory: React.FC<DocumentDirectoryProps> = ({
     },
     {
       key: 'birth_certificate',
-      icon: <FileText className="w-5 h-5 text-teal-400 light:text-teal-700" />,
+      icon: <FileText className="w-5 h-5 text-teal-700 dark:text-teal-400" />,
       titleEn: 'Digital Birth Registration',
       titleBn: 'ডিজিটাল জন্ম ও মৃত্যু নিবন্ধন',
       badge: 'BDRIS Portal',
@@ -92,10 +92,10 @@ export const DocumentDirectory: React.FC<DocumentDirectoryProps> = ({
     <div className="space-y-4">
       <div className="flex items-center justify-between px-1">
         <div>
-          <h3 className="font-extrabold text-lg text-slate-100 dark:text-slate-100 light:text-[#0F172A] flex items-center space-x-2">
+          <h3 className="font-extrabold text-lg text-[#0F172A] dark:text-slate-100 flex items-center space-x-2">
             <span>Bangladeshi Official Document & Card Directory</span>
           </h3>
-          <p className="text-xs text-slate-400 dark:text-slate-400 light:text-[#334155] font-semibold mt-0.5">
+          <p className="text-xs text-[#334155] dark:text-slate-400 font-bold mt-0.5">
             Select any document type to instantly access prerequisite checklists, step roadmaps & GD form downloads
           </p>
         </div>
@@ -110,40 +110,40 @@ export const DocumentDirectory: React.FC<DocumentDirectoryProps> = ({
               onClick={() => onSelectCategory(cat.key)}
               className={`p-4 rounded-2xl border cursor-pointer transition-all duration-200 space-y-3 ${
                 isActive
-                  ? 'bg-emerald-950/30 dark:bg-emerald-950/30 light:bg-[#DCECC7] border-emerald-500 light:border-emerald-600 shadow-lg ring-2 ring-emerald-500/40'
-                  : 'bg-[#131924] dark:bg-[#131924] light:bg-[#EBE3A7] border-slate-800/80 light:border-[#D9D092] hover:border-emerald-500/40 shadow-sm hover:shadow-md'
+                  ? 'bg-[#DCECC7] dark:bg-emerald-950/30 border-emerald-600 dark:border-emerald-500 shadow-lg ring-2 ring-emerald-500/40'
+                  : 'bg-[#EBE3A7] dark:bg-[#131924] border-[#D9D092] dark:border-slate-800/80 hover:border-emerald-500/40 shadow-sm hover:shadow-md'
               }`}
             >
               <div className="flex items-center justify-between">
-                <div className="p-2 rounded-xl bg-slate-900/80 dark:bg-slate-900/80 light:bg-[#DCD396] border border-slate-800 light:border-[#C5BC7F]">
+                <div className="p-2 rounded-xl bg-[#DCD396] dark:bg-slate-900/80 border border-[#C5BC7F] dark:border-slate-800">
                   {cat.icon}
                 </div>
-                <span className="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-slate-800 dark:bg-slate-800 dark:text-slate-300 light:bg-[#DCD396] light:text-[#0F172A] border border-slate-700 light:border-[#C5BC7F]">
+                <span className="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-[#DCD396] dark:bg-slate-800 text-[#0F172A] dark:text-slate-200 border border-[#C5BC7F] dark:border-slate-700 shadow-sm">
                   {cat.badge}
                 </span>
               </div>
 
               <div>
-                <h4 className="font-extrabold text-sm text-slate-100 dark:text-slate-100 light:text-[#0F172A]">
+                <h4 className="font-extrabold text-sm text-[#0F172A] dark:text-slate-100">
                   {language === 'bn' ? cat.titleBn : cat.titleEn}
                 </h4>
-                <p className="text-xs text-emerald-400 dark:text-emerald-400 light:text-[#047857] font-bold mt-0.5">
+                <p className="text-xs text-[#047857] dark:text-emerald-400 font-extrabold mt-0.5">
                   {language === 'bn' ? cat.feeBn : cat.feeEn}
                 </p>
               </div>
 
-              <p className="text-xs text-slate-400 dark:text-slate-400 light:text-[#1E293B] font-medium line-clamp-2 leading-relaxed">
+              <p className="text-xs text-[#1E293B] dark:text-slate-400 font-medium line-clamp-2 leading-relaxed">
                 {language === 'bn' ? cat.descBn : cat.descEn}
               </p>
 
-              <div className="flex items-center justify-between text-xs pt-2 border-t border-slate-800/60 light:border-[#D9D092]">
+              <div className="flex items-center justify-between text-xs pt-2 border-t border-[#D9D092] dark:border-slate-800/60">
                 <button
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
                     onSelectCategory(cat.key);
                   }}
-                  className="text-emerald-400 dark:text-emerald-400 light:text-emerald-950 font-extrabold hover:opacity-90 flex items-center space-x-1 py-1.5 px-3 rounded-lg bg-emerald-500/10 dark:bg-emerald-500/10 light:bg-emerald-500/20 border border-emerald-500/30 light:border-emerald-600/40 transition-all shadow-sm"
+                  className="text-[#047857] dark:text-emerald-400 font-extrabold hover:opacity-90 flex items-center space-x-1 py-1.5 px-3 rounded-lg bg-emerald-500/20 dark:bg-emerald-500/10 border border-emerald-600/40 dark:border-emerald-500/30 transition-all shadow-sm"
                 >
                   <span>View Action Plan</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -153,7 +153,7 @@ export const DocumentDirectory: React.FC<DocumentDirectoryProps> = ({
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="text-[10px] text-slate-400 dark:text-slate-400 light:text-[#334155] hover:text-cyan-400 light:hover:text-cyan-700 font-bold hover:underline"
+                  className="text-[10px] text-[#334155] dark:text-slate-400 hover:text-cyan-700 dark:hover:text-cyan-400 font-extrabold hover:underline"
                 >
                   Verified Portal ↗
                 </a>

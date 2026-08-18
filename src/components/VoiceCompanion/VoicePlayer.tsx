@@ -34,20 +34,20 @@ export const VoicePlayer: React.FC<VoicePlayerProps> = ({ voiceSummaryBn, eleven
   };
 
   return (
-    <div className="p-4 rounded-2xl bg-[#131924] dark:bg-[#131924] light:bg-[#EBE3A7] border border-cyan-500/30 light:border-[#D9D092] shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div className="p-4 rounded-2xl bg-[#EBE3A7] dark:bg-[#131924] border border-[#D9D092] dark:border-cyan-500/30 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
       
-      <div className="flex items-center space-x-3 text-slate-200 dark:text-slate-200 light:text-[#0F172A]">
-        <div className="p-3 rounded-xl bg-cyan-500/10 dark:bg-cyan-500/10 light:bg-[#DCD396] text-cyan-400 dark:text-cyan-400 light:text-cyan-950 border border-cyan-500/30 light:border-[#C5BC7F] glow-cyan">
-          <Volume2 className={`w-6 h-6 ${isPlaying ? 'animate-bounce text-cyan-300 light:text-cyan-900' : ''}`} />
+      <div className="flex items-center space-x-3 text-[#0F172A] dark:text-slate-200">
+        <div className="p-3 rounded-xl bg-[#DCD396] dark:bg-cyan-500/10 text-cyan-950 dark:text-cyan-400 border border-[#C5BC7F] dark:border-cyan-500/30 glow-cyan">
+          <Volume2 className={`w-6 h-6 ${isPlaying ? 'animate-bounce text-cyan-900 dark:text-cyan-300' : ''}`} />
         </div>
         <div className="space-y-0.5">
           <div className="flex items-center space-x-2">
-            <span className="font-extrabold text-sm text-slate-100 dark:text-slate-100 light:text-[#0F172A]">ElevenLabs Natural Voice Guidance</span>
-            <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-cyan-500/20 dark:bg-cyan-500/20 light:bg-cyan-500/30 text-cyan-300 dark:text-cyan-300 light:text-cyan-950 border border-cyan-500/30 light:border-cyan-600/40">
+            <span className="font-extrabold text-sm text-[#0F172A] dark:text-slate-100">ElevenLabs Natural Voice Guidance</span>
+            <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-cyan-500/30 dark:bg-cyan-500/20 text-cyan-950 dark:text-cyan-300 border border-cyan-600/40 dark:border-cyan-500/30">
               Voice AI Track
             </span>
           </div>
-          <p className="text-xs text-emerald-400 dark:text-emerald-400 light:text-[#047857] font-bangla font-bold">
+          <p className="text-xs text-[#047857] dark:text-emerald-400 font-bangla font-extrabold">
             "{voiceSummaryBn}"
           </p>
         </div>
@@ -59,7 +59,7 @@ export const VoicePlayer: React.FC<VoicePlayerProps> = ({ voiceSummaryBn, eleven
         className={`flex items-center space-x-2 px-5 py-2.5 rounded-xl font-extrabold text-xs transition-all shadow-md flex-shrink-0 ${
           isPlaying
             ? 'bg-amber-500 text-black glow-amber'
-            : 'bg-gradient-to-r from-cyan-500 to-emerald-500 text-white hover:scale-105 glow-cyan'
+            : 'bg-gradient-to-r from-cyan-600 to-emerald-600 text-white hover:scale-105 glow-cyan'
         }`}
       >
         {loadingAudio ? (
