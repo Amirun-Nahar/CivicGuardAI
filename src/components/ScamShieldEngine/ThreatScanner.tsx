@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Upload, AlertTriangle, ShieldAlert, Link as LinkIcon, FileText, Image as ImageIcon, Sparkles, RefreshCw } from 'lucide-react';
+import { Upload, AlertTriangle, ShieldAlert, Sparkles, RefreshCw } from 'lucide-react';
 import { ZeroPiiBanner } from '../ZeroPiiBanner';
 
 interface ThreatScannerProps {
@@ -40,32 +40,32 @@ export const ThreatScanner: React.FC<ThreatScannerProps> = ({
       <ZeroPiiBanner currentInputText={inputText} />
 
       {/* Input Container */}
-      <div className="p-6 rounded-2xl bg-gradient-to-br from-[#131924] via-[#0E1420] to-[#131924] border border-[#1E2638] shadow-2xl space-y-4">
-        <div className="flex items-center justify-between border-b border-[#1E2638] pb-3">
-          <div className="flex items-center space-x-2">
-            <ShieldAlert className="w-6 h-6 text-crimsondanger-500 animate-pulse" />
+      <div className="p-4 sm:p-6 rounded-2xl bg-[#EBE3A7] dark:bg-gradient-to-br dark:from-[#131924] dark:via-[#0E1420] dark:to-[#131924] border border-[#D9D092] dark:border-[#1E2638] shadow-2xl space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#D9D092] dark:border-[#1E2638] pb-3">
+          <div className="flex items-center space-x-2.5">
+            <ShieldAlert className="w-6 h-6 text-rose-700 dark:text-rose-400 animate-pulse flex-shrink-0" />
             <div>
-              <h3 className="font-extrabold text-lg text-slate-100 flex items-center space-x-2">
+              <h3 className="font-extrabold text-base sm:text-lg text-[#0F172A] dark:text-slate-100 flex flex-wrap items-center gap-2">
                 <span>ScamShield Multimodal Threat Scanner</span>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-crimsondanger-500/20 text-crimsondanger-500 border border-crimsondanger-500/30">
+                <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-950 dark:text-rose-300 border border-rose-600/30">
                   Visual Bounding Box HUD
                 </span>
               </h3>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-[#334155] dark:text-slate-400 font-extrabold">
                 Upload suspicious SMS screenshots, paste suspicious URLs, or enter message text for Gemini 2.5 Flash analysis.
               </p>
             </div>
           </div>
 
           {/* Quick Hackathon Demo Scenarios */}
-          <div className="hidden sm:flex items-center space-x-2">
+          <div className="flex items-center space-x-2 flex-shrink-0">
             <button
               type="button"
               onClick={() => onLoadPreset('bkash_phishing')}
-              className="flex items-center space-x-1 px-3 py-1.5 rounded-xl bg-crimsondanger-500/10 text-rose-300 border border-crimsondanger-500/30 text-xs font-bold hover:bg-crimsondanger-500/20 transition-colors"
+              className="flex items-center space-x-1 px-3 py-1.5 rounded-xl bg-[#DCD396] dark:bg-rose-500/10 text-[#B91C1C] dark:text-rose-300 border border-[#C5BC7F] dark:border-rose-500/30 text-xs font-extrabold hover:scale-105 transition-all shadow-sm"
             >
-              <Sparkles className="w-3.5 h-3.5 text-rose-400" />
-              <span>Demo 1: bKash Phishing SMS</span>
+              <Sparkles className="w-3.5 h-3.5 text-rose-700 dark:text-rose-400" />
+              <span>Demo: bKash Phishing SMS</span>
             </button>
           </div>
         </div>
@@ -77,12 +77,12 @@ export const ThreatScanner: React.FC<ThreatScannerProps> = ({
               placeholder="Paste suspicious SMS text, URL (e.g. bkash-bonus-offer2026.xyz), or fraud message here..."
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              className="w-full p-4 rounded-xl bg-[#090D14] border border-[#1E2638] text-slate-100 placeholder-slate-500 focus:outline-none focus:border-crimsondanger-500 font-sans text-sm"
+              className="w-full p-4 rounded-xl bg-[#FFF8D6] dark:bg-[#090D14] border border-[#C5BC7F] dark:border-[#1E2638] text-[#0F172A] dark:text-slate-100 placeholder-[#475569] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-rose-500/40 font-extrabold text-xs sm:text-sm shadow-inner"
             />
           </div>
 
           {/* Image Upload Area */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-xl bg-[#090D14]/70 border border-dashed border-slate-700">
+          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 p-4 rounded-xl bg-[#FFF8D6] dark:bg-[#090D14]/70 border border-dashed border-[#C5BC7F] dark:border-slate-700">
             <input
               type="file"
               ref={fileInputRef}
@@ -93,15 +93,15 @@ export const ThreatScanner: React.FC<ThreatScannerProps> = ({
 
             {imagePreview ? (
               <div className="flex items-center space-x-3">
-                <img src={imagePreview} alt="Screenshot Preview" className="w-14 h-14 object-cover rounded-lg border border-slate-700" />
+                <img src={imagePreview} alt="Screenshot Preview" className="w-14 h-14 object-cover rounded-lg border border-[#C5BC7F] dark:border-slate-700 shadow-sm" />
                 <div className="text-xs">
-                  <p className="font-bold text-slate-200">{selectedFile?.name}</p>
-                  <p className="text-slate-500">{(selectedFile!.size / 1024).toFixed(1)} KB • Ready for Multimodal Analysis</p>
+                  <p className="font-extrabold text-[#0F172A] dark:text-slate-200">{selectedFile?.name}</p>
+                  <p className="text-[#334155] dark:text-slate-400 font-bold">{(selectedFile!.size / 1024).toFixed(1)} KB • Ready for Multimodal Analysis</p>
                 </div>
                 <button
                   type="button"
                   onClick={() => { setSelectedFile(null); setImagePreview(null); }}
-                  className="text-xs text-rose-400 hover:underline ml-2"
+                  className="text-xs text-rose-700 dark:text-rose-400 font-extrabold hover:underline ml-2"
                 >
                   Remove
                 </button>
@@ -109,14 +109,14 @@ export const ThreatScanner: React.FC<ThreatScannerProps> = ({
             ) : (
               <div
                 onClick={() => fileInputRef.current?.click()}
-                className="flex items-center space-x-3 cursor-pointer text-slate-400 hover:text-slate-200 transition-colors"
+                className="flex items-center space-x-3 cursor-pointer text-[#334155] dark:text-slate-400 hover:text-[#0F172A] dark:hover:text-slate-200 transition-colors"
               >
-                <div className="p-2.5 rounded-xl bg-slate-800 text-cyan-400">
+                <div className="p-2.5 rounded-xl bg-[#DCD396] dark:bg-slate-800 text-cyan-900 dark:text-cyan-400 border border-[#C5BC7F] dark:border-slate-700">
                   <Upload className="w-5 h-5" />
                 </div>
                 <div className="text-xs">
-                  <p className="font-semibold text-slate-200">Upload Screenshot for Bounding Box Overlay</p>
-                  <p className="text-slate-500">PNG, JPG, WEBP screenshots of SMS, bKash, or web pages</p>
+                  <p className="font-extrabold text-[#0F172A] dark:text-slate-200">Upload Screenshot for Bounding Box Overlay</p>
+                  <p className="text-[#334155] dark:text-slate-400 font-bold">PNG, JPG, WEBP screenshots of SMS, bKash, or web pages</p>
                 </div>
               </div>
             )}
@@ -124,10 +124,10 @@ export const ThreatScanner: React.FC<ThreatScannerProps> = ({
             <button
               type="submit"
               disabled={isLoading || (!inputText && !selectedFile)}
-              className={`flex items-center justify-center space-x-2 px-6 py-3 rounded-xl font-extrabold text-sm transition-all shadow-lg ${
+              className={`flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl font-extrabold text-xs sm:text-sm transition-all shadow-lg flex-shrink-0 ${
                 isLoading || (!inputText && !selectedFile)
-                  ? 'bg-slate-800 text-slate-500 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-crimson-600 via-rose-600 to-amber-600 text-white hover:opacity-95 glow-crimson'
+                  ? 'bg-slate-300 dark:bg-slate-800 text-slate-600 dark:text-slate-500 cursor-not-allowed'
+                  : 'bg-gradient-to-r from-rose-700 via-crimson-600 to-amber-700 dark:from-rose-600 dark:via-crimson-500 dark:to-amber-600 text-white hover:opacity-95 hover:scale-105 active:scale-95 glow-crimson'
               }`}
             >
               {isLoading ? (

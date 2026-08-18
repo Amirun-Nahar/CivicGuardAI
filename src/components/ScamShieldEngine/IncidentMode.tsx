@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AlertOctagon, PhoneCall, ShieldAlert, Lock, Volume2, CheckSquare, Square, X } from 'lucide-react';
+import { AlertOctagon, PhoneCall, Volume2, CheckSquare, Square, X } from 'lucide-react';
 import { speakText, stopSpeech } from '../../lib/elevenLabsService';
 
 interface IncidentModeProps {
@@ -62,44 +62,44 @@ export const IncidentMode: React.FC<IncidentModeProps> = ({ onClose, elevenLabsA
   };
 
   return (
-    <div className="p-6 rounded-2xl bg-gradient-to-br from-crimson-950/80 via-[#131924] to-[#0E1420] border-2 border-crimsondanger-500 shadow-2xl glow-crimson space-y-6 animate-pulse-slow">
+    <div className="p-4 sm:p-6 rounded-2xl bg-[#EBE3A7] dark:bg-gradient-to-br dark:from-crimson-950/80 dark:via-[#131924] dark:to-[#0E1420] border-2 border-rose-600 dark:border-crimsondanger-500 shadow-2xl space-y-5">
       
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-crimsondanger-500/30 pb-4">
+      <div className="flex items-center justify-between border-b border-rose-600/40 dark:border-crimsondanger-500/30 pb-4">
         <div className="flex items-center space-x-3">
-          <div className="p-3 rounded-xl bg-crimsondanger-500 text-white animate-bounce">
-            <AlertOctagon className="w-7 h-7" />
+          <div className="p-2.5 sm:p-3 rounded-xl bg-rose-700 dark:bg-crimsondanger-500 text-white animate-bounce flex-shrink-0">
+            <AlertOctagon className="w-6 h-6 sm:w-7 sm:h-7" />
           </div>
           <div>
-            <h2 className="text-xl font-black text-rose-200 tracking-tight flex items-center space-x-2">
+            <h2 className="text-lg sm:text-xl font-extrabold text-[#0F172A] dark:text-rose-200 tracking-tight flex flex-wrap items-center gap-2">
               <span>INCIDENT RESPONSE TRIAGE MODE</span>
-              <span className="text-xs px-2 py-0.5 rounded bg-rose-500 text-white font-bold">EMERGENCY PROTOCOL</span>
+              <span className="text-xs px-2 py-0.5 rounded bg-rose-700 text-white font-extrabold">EMERGENCY PROTOCOL</span>
             </h2>
-            <p className="text-xs text-rose-300">Follow these 4 immediate steps to limit damage and secure your funds</p>
+            <p className="text-xs text-[#334155] dark:text-rose-300 font-extrabold">Follow these 4 immediate steps to limit damage and secure your funds</p>
           </div>
         </div>
 
-        <button onClick={onClose} className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800">
+        <button onClick={onClose} className="p-1 rounded-lg text-[#0F172A] dark:text-slate-400 hover:text-rose-700 dark:hover:text-white transition-colors">
           <X className="w-6 h-6" />
         </button>
       </div>
 
       {/* Emergency Voice Audio Checklist Dispatcher */}
-      <div className="p-4 rounded-xl bg-rose-950/40 border border-rose-500/40 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <div className="flex items-center space-x-3 text-xs text-rose-200">
-          <Volume2 className="w-5 h-5 text-rose-400 flex-shrink-0 animate-pulse" />
+      <div className="p-4 rounded-xl bg-[#FFF8D6] dark:bg-rose-950/40 border border-rose-600/40 dark:border-rose-500/40 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-sm">
+        <div className="flex items-center space-x-3 text-xs text-[#0F172A] dark:text-rose-200">
+          <Volume2 className="w-5 h-5 text-rose-700 dark:text-rose-400 flex-shrink-0 animate-pulse" />
           <div>
-            <span className="font-extrabold block">ElevenLabs Emergency Voice Audio Guide (Bangla)</span>
+            <span className="font-extrabold block text-sm">ElevenLabs Emergency Voice Audio Guide (Bangla)</span>
             Listen to natural voice instructions on your phone speaker.
           </div>
         </div>
 
         <button
           onClick={handleSpeakEmergency}
-          className={`px-4 py-2 rounded-xl text-xs font-extrabold flex items-center space-x-2 transition-all ${
+          className={`px-4 py-2 rounded-xl text-xs font-extrabold flex items-center space-x-2 transition-all shadow-md flex-shrink-0 ${
             isPlayingAudio
               ? 'bg-amber-500 text-black animate-pulse'
-              : 'bg-rose-600 text-white hover:bg-rose-500'
+              : 'bg-rose-700 dark:bg-rose-600 text-white hover:bg-rose-800'
           }`}
         >
           <Volume2 className="w-4 h-4" />
@@ -115,25 +115,25 @@ export const IncidentMode: React.FC<IncidentModeProps> = ({ onClose, elevenLabsA
             <div
               key={idx}
               onClick={() => toggleStep(idx)}
-              className={`p-4 rounded-xl border cursor-pointer transition-all space-y-2 ${
+              className={`p-4 rounded-xl border cursor-pointer transition-all space-y-2 shadow-sm ${
                 isDone
-                  ? 'bg-emerald-950/30 border-emerald-500/50 text-emerald-200'
-                  : 'bg-[#090D14] border-rose-500/30 text-slate-200 hover:border-rose-500'
+                  ? 'bg-[#DCECC7] dark:bg-emerald-950/30 border-emerald-600 dark:border-emerald-500/50 text-[#047857] dark:text-emerald-200'
+                  : 'bg-[#FFF8D6] dark:bg-[#090D14] border-rose-600/30 dark:border-rose-500/30 text-[#0F172A] dark:text-slate-200 hover:border-rose-600'
               }`}
             >
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center space-x-2">
-                  <button className="text-rose-400">
-                    {isDone ? <CheckSquare className="w-5 h-5 text-emerald-400" /> : <Square className="w-5 h-5" />}
+                  <button className="text-rose-700 dark:text-rose-400">
+                    {isDone ? <CheckSquare className="w-5 h-5 text-emerald-800 dark:text-emerald-400" /> : <Square className="w-5 h-5" />}
                   </button>
-                  <span className="font-extrabold text-sm text-slate-100">{step.title}</span>
+                  <span className="font-extrabold text-sm text-[#0F172A] dark:text-slate-100">{step.title}</span>
                 </div>
 
                 {step.phone && (
                   <a
                     href={`tel:${step.phone}`}
                     onClick={(e) => e.stopPropagation()}
-                    className="flex items-center space-x-1 px-2.5 py-1 rounded bg-rose-600 hover:bg-rose-500 text-white text-[11px] font-bold"
+                    className="flex items-center space-x-1 px-2.5 py-1 rounded bg-rose-700 dark:bg-rose-600 text-white text-[11px] font-extrabold shadow-xs flex-shrink-0"
                   >
                     <PhoneCall className="w-3 h-3" />
                     <span>{step.phone}</span>
@@ -141,7 +141,7 @@ export const IncidentMode: React.FC<IncidentModeProps> = ({ onClose, elevenLabsA
                 )}
               </div>
 
-              <p className="text-xs text-slate-300 pl-7 leading-relaxed">{step.details}</p>
+              <p className="text-xs text-[#334155] dark:text-slate-300 pl-7 leading-relaxed font-semibold">{step.details}</p>
             </div>
           );
         })}

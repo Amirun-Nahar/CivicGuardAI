@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Download, Printer, Shield, FileText, CheckCircle2 } from 'lucide-react';
+import { X, Download, Shield, FileText } from 'lucide-react';
 import { generatePoliceGdPdf, generateBankDisputePdf } from '../../lib/pdfGenerator';
 import { GdFormData, BankDisputeFormData } from '../../types';
 
@@ -60,101 +60,101 @@ export const GdPdfModal: React.FC<GdPdfModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
-      <div className="w-full max-w-2xl bg-[#131924] dark:bg-[#131924] light:bg-white rounded-2xl border border-[#1E2638] p-6 shadow-2xl space-y-5 my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
+      <div className="w-full max-w-2xl bg-[#EBE3A7] dark:bg-[#131924] rounded-2xl border border-[#D9D092] dark:border-[#1E2638] p-4 sm:p-6 shadow-2xl space-y-4 my-auto">
         
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-[#1E2638] pb-4">
+        <div className="flex items-center justify-between border-b border-[#D9D092] dark:border-[#1E2638] pb-3 sm:pb-4">
           <div className="flex items-center space-x-3">
-            <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-              <FileText className="w-6 h-6" />
+            <div className="p-2 sm:p-2.5 rounded-xl bg-[#DCD396] dark:bg-emerald-500/10 text-emerald-950 dark:text-emerald-400 border border-[#C5BC7F] dark:border-emerald-500/30">
+              <FileText className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
             <div>
-              <h3 className="font-extrabold text-lg text-slate-100 light:text-slate-900">
+              <h3 className="font-extrabold text-base sm:text-lg text-[#0F172A] dark:text-slate-100">
                 {isGd ? '1-Click Police General Diary (GD) Generator' : '1-Click Bank Fraud Dispute Letter'}
               </h3>
-              <p className="text-xs text-slate-400">Pre-filled with CIVIC GUARD AI intelligence</p>
+              <p className="text-xs text-[#334155] dark:text-slate-400 font-extrabold">Pre-filled with CIVIC GUARD AI intelligence</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800">
+          <button onClick={onClose} className="p-1.5 rounded-lg text-[#0F172A] dark:text-slate-400 hover:text-rose-600 dark:hover:text-white hover:bg-[#DCD396] dark:hover:bg-slate-800 transition-colors">
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Dynamic Form Editor */}
-        <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2 text-xs">
+        <div className="space-y-3.5 max-h-[60vh] overflow-y-auto pr-1 text-xs">
           {isGd ? (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold text-slate-300 mb-1">Police Thana Station Name</label>
+                  <label className="block font-extrabold text-[#0F172A] dark:text-slate-300 mb-1">Police Thana Station Name</label>
                   <input
                     type="text"
                     value={gdData.policeStation}
                     onChange={(e) => setGdData({ ...gdData, policeStation: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl bg-[#090D14] border border-[#1E2638] text-slate-100"
+                    className="w-full px-3 py-2 rounded-xl bg-[#FFF8D6] dark:bg-[#090D14] border border-[#C5BC7F] dark:border-[#1E2638] text-[#0F172A] dark:text-slate-100 font-extrabold"
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-300 mb-1">District / City</label>
+                  <label className="block font-extrabold text-[#0F172A] dark:text-slate-300 mb-1">District / City</label>
                   <input
                     type="text"
                     value={gdData.district}
                     onChange={(e) => setGdData({ ...gdData, district: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl bg-[#090D14] border border-[#1E2638] text-slate-100"
+                    className="w-full px-3 py-2 rounded-xl bg-[#FFF8D6] dark:bg-[#090D14] border border-[#C5BC7F] dark:border-[#1E2638] text-[#0F172A] dark:text-slate-100 font-extrabold"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold text-slate-300 mb-1">Applicant Full Name</label>
+                  <label className="block font-extrabold text-[#0F172A] dark:text-slate-300 mb-1">Applicant Full Name</label>
                   <input
                     type="text"
                     value={gdData.applicantName}
                     onChange={(e) => setGdData({ ...gdData, applicantName: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl bg-[#090D14] border border-[#1E2638] text-slate-100"
+                    className="w-full px-3 py-2 rounded-xl bg-[#FFF8D6] dark:bg-[#090D14] border border-[#C5BC7F] dark:border-[#1E2638] text-[#0F172A] dark:text-slate-100 font-extrabold"
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-300 mb-1">Father / Spouse Name</label>
+                  <label className="block font-extrabold text-[#0F172A] dark:text-slate-300 mb-1">Father / Spouse Name</label>
                   <input
                     type="text"
                     value={gdData.fatherName}
                     onChange={(e) => setGdData({ ...gdData, fatherName: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl bg-[#090D14] border border-[#1E2638] text-slate-100"
+                    className="w-full px-3 py-2 rounded-xl bg-[#FFF8D6] dark:bg-[#090D14] border border-[#C5BC7F] dark:border-[#1E2638] text-[#0F172A] dark:text-slate-100 font-extrabold"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold text-slate-300 mb-1">Mobile Phone Number</label>
+                  <label className="block font-extrabold text-[#0F172A] dark:text-slate-300 mb-1">Mobile Phone Number</label>
                   <input
                     type="text"
                     value={gdData.phone}
                     onChange={(e) => setGdData({ ...gdData, phone: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl bg-[#090D14] border border-[#1E2638] text-slate-100"
+                    className="w-full px-3 py-2 rounded-xl bg-[#FFF8D6] dark:bg-[#090D14] border border-[#C5BC7F] dark:border-[#1E2638] text-[#0F172A] dark:text-slate-100 font-extrabold"
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-300 mb-1">NID / Passport Number</label>
+                  <label className="block font-extrabold text-[#0F172A] dark:text-slate-300 mb-1">NID / Passport Number</label>
                   <input
                     type="text"
                     value={gdData.nidOrPassport}
                     onChange={(e) => setGdData({ ...gdData, nidOrPassport: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl bg-[#090D14] border border-[#1E2638] text-slate-100"
+                    className="w-full px-3 py-2 rounded-xl bg-[#FFF8D6] dark:bg-[#090D14] border border-[#C5BC7F] dark:border-[#1E2638] text-[#0F172A] dark:text-slate-100 font-extrabold"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block font-bold text-slate-300 mb-1">Description of Lost Document / Item</label>
+                <label className="block font-extrabold text-[#0F172A] dark:text-slate-300 mb-1">Description of Lost Document / Item</label>
                 <textarea
                   rows={3}
                   value={gdData.lostItemDetails}
                   onChange={(e) => setGdData({ ...gdData, lostItemDetails: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl bg-[#090D14] border border-[#1E2638] text-slate-100"
+                  className="w-full px-3 py-2 rounded-xl bg-[#FFF8D6] dark:bg-[#090D14] border border-[#C5BC7F] dark:border-[#1E2638] text-[#0F172A] dark:text-slate-100 font-extrabold"
                 />
               </div>
             </>
@@ -162,53 +162,53 @@ export const GdPdfModal: React.FC<GdPdfModalProps> = ({
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold text-slate-300 mb-1">Bank Name</label>
+                  <label className="block font-extrabold text-[#0F172A] dark:text-slate-300 mb-1">Bank Name</label>
                   <input
                     type="text"
                     value={bankData.bankName}
                     onChange={(e) => setBankData({ ...bankData, bankName: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl bg-[#090D14] border border-[#1E2638] text-slate-100"
+                    className="w-full px-3 py-2 rounded-xl bg-[#FFF8D6] dark:bg-[#090D14] border border-[#C5BC7F] dark:border-[#1E2638] text-[#0F172A] dark:text-slate-100 font-extrabold"
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-300 mb-1">Disputed Amount (BDT)</label>
+                  <label className="block font-extrabold text-[#0F172A] dark:text-slate-300 mb-1">Disputed Amount (BDT)</label>
                   <input
                     type="text"
                     value={bankData.disputedAmount}
                     onChange={(e) => setBankData({ ...bankData, disputedAmount: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl bg-[#090D14] border border-[#1E2638] text-slate-100"
+                    className="w-full px-3 py-2 rounded-xl bg-[#FFF8D6] dark:bg-[#090D14] border border-[#C5BC7F] dark:border-[#1E2638] text-[#0F172A] dark:text-slate-100 font-extrabold"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold text-slate-300 mb-1">Account Holder Name</label>
+                  <label className="block font-extrabold text-[#0F172A] dark:text-slate-300 mb-1">Account Holder Name</label>
                   <input
                     type="text"
                     value={bankData.accountHolderName}
                     onChange={(e) => setBankData({ ...bankData, accountHolderName: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl bg-[#090D14] border border-[#1E2638] text-slate-100"
+                    className="w-full px-3 py-2 rounded-xl bg-[#FFF8D6] dark:bg-[#090D14] border border-[#C5BC7F] dark:border-[#1E2638] text-[#0F172A] dark:text-slate-100 font-extrabold"
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-300 mb-1">Transaction Ref ID</label>
+                  <label className="block font-extrabold text-[#0F172A] dark:text-slate-300 mb-1">Transaction Ref ID</label>
                   <input
                     type="text"
                     value={bankData.transactionId}
                     onChange={(e) => setBankData({ ...bankData, transactionId: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl bg-[#090D14] border border-[#1E2638] text-slate-100"
+                    className="w-full px-3 py-2 rounded-xl bg-[#FFF8D6] dark:bg-[#090D14] border border-[#C5BC7F] dark:border-[#1E2638] text-[#0F172A] dark:text-slate-100 font-extrabold"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block font-bold text-slate-300 mb-1">Fraud Dispute Statement</label>
+                <label className="block font-extrabold text-[#0F172A] dark:text-slate-300 mb-1">Fraud Dispute Statement</label>
                 <textarea
                   rows={3}
                   value={bankData.disputeReason}
                   onChange={(e) => setBankData({ ...bankData, disputeReason: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl bg-[#090D14] border border-[#1E2638] text-slate-100"
+                  className="w-full px-3 py-2 rounded-xl bg-[#FFF8D6] dark:bg-[#090D14] border border-[#C5BC7F] dark:border-[#1E2638] text-[#0F172A] dark:text-slate-100 font-extrabold"
                 />
               </div>
             </>
@@ -216,22 +216,22 @@ export const GdPdfModal: React.FC<GdPdfModalProps> = ({
         </div>
 
         {/* Footer Actions */}
-        <div className="flex items-center justify-between border-t border-[#1E2638] pt-4">
-          <span className="text-[11px] text-slate-400 flex items-center space-x-1">
-            <Shield className="w-3.5 h-3.5 text-emerald-400" />
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-[#D9D092] dark:border-[#1E2638] pt-3 sm:pt-4">
+          <span className="text-[11px] text-[#334155] dark:text-slate-400 font-extrabold flex items-center space-x-1">
+            <Shield className="w-3.5 h-3.5 text-emerald-800 dark:text-emerald-400" />
             <span>Form 102 Compliant Document Format</span>
           </span>
 
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2.5 w-full sm:w-auto justify-end">
             <button
               onClick={onClose}
-              className="px-4 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white"
+              className="px-4 py-2 rounded-xl text-xs font-extrabold text-[#0F172A] dark:text-slate-400 hover:text-rose-600 dark:hover:text-white transition-colors"
             >
               Cancel
             </button>
             <button
               onClick={handleDownload}
-              className="flex items-center space-x-2 px-5 py-2.5 rounded-xl font-bold text-xs bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-lg glow-emerald hover:scale-105 transition-transform"
+              className="flex items-center space-x-2 px-5 py-2.5 rounded-xl font-extrabold text-xs bg-gradient-to-r from-emerald-600 to-cyan-600 dark:from-emerald-500 dark:to-cyan-500 text-white shadow-lg glow-emerald hover:scale-105 transition-transform"
             >
               <Download className="w-4 h-4" />
               <span>Download Signed Official PDF</span>
