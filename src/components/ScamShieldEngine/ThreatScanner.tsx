@@ -30,7 +30,8 @@ export const ThreatScanner: React.FC<ThreatScannerProps> = ({
   const handleScan = (e: React.FormEvent) => {
     e.preventDefault();
     if (!inputText && !selectedFile) return;
-    onScanText(inputText, selectedFile);
+    const query = inputText.trim() || 'Analyze uploaded screenshot for phishing threats and UI risk bounding boxes';
+    onScanText(query, selectedFile);
   };
 
   return (

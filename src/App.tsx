@@ -39,6 +39,7 @@ export function App() {
   // Navigation state for standalone detail page view
   const [activeCategoryKey, setActiveCategoryKey] = useState<string>('lost_nid');
   const [activeViewMode, setActiveViewMode] = useState<'DIRECTORY' | 'DETAIL'>('DIRECTORY');
+  const [uploadedImagePreview, setUploadedImagePreview] = useState<string | null>(null);
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -53,6 +54,11 @@ export function App() {
   const handleQuerySubmit = async (queryText?: string, file?: File | null) => {
     const query = queryText || userInput;
     if (!query && !file) return;
+
+    if (file) {
+      const previewUrl = URL.createObjectURL(file);
+      setUploadedImagePreview(previewUrl);
+    }
 
     setIsLoading(true);
     try {
@@ -247,7 +253,7 @@ export function App() {
               <>
                 {/* Visual HUD Canvas Bounding Box */}
                 <VisualHudOverlay
-                  imageSrc={null}
+                  imageSrc={uploadedImagePreview}
                   boundingBoxes={activeResponse.scamshield_data.bounding_boxes}
                   riskLevel={activeResponse.scamshield_data.risk_level}
                 />
